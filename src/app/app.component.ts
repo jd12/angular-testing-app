@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  namePattern = new RegExp("^([A-Za-z'-]+)$");
+  public couldBeName(token: string) {
+    return this.namePattern.test(token);
+  }
 }
