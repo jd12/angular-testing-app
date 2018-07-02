@@ -39,4 +39,20 @@ describe('AppComponent', () => {
     expect(app.couldBeName('John Smith')).toBe(false, 'Names cannot contain spaces');
   });
 
+  it('should return true for tokens that match phone number pattern', () => {
+    const app = new AppComponent();
+    expect(app.couldBePhoneNumber('123')).toBe(true, '123 should be a phone number');
+    expect(app.couldBePhoneNumber('(123)')).toBe(true, '(123) should be a phone number');
+    expect(app.couldBePhoneNumber('123-456-7890')).toBe(true, 'phone number should be able to contain -');
+    expect(app.couldBePhoneNumber('123 456 7890')).toBe(true, 'phone numbers with spaces should be valid');
+    expect(app.couldBePhoneNumber('(123) 456-7890')).toBe(true, 'phone number should be able to contain - )');
+  });
+
+  it('should return false for tokens that do not match phone number pattern', () => {
+    const app = new AppComponent();
+    expect(app.couldBePhoneNumber('123johnsmith')).toBe(false, 'numbers cannot contain letters');
+    expect(app.couldBePhoneNumber('(123!')).toBe(false, 'Numbers cannot contain special characters');
+    expect(app.couldBePhoneNumber('')).toBe(false, 'empty string should return false');
+  });
+
 });
