@@ -55,4 +55,18 @@ describe('AppComponent', () => {
     expect(app.couldBePhoneNumber('')).toBe(false, 'empty string should return false');
   });
 
+  it('should return true for tokens that match email pattern', () => {
+    const app = new AppComponent();
+    expect(app.couldBeEmail('johnsmith@gmail.com')).toBe(true, 'normal email should be valid');
+    expect(app.couldBeEmail('john.smith@gmail.com')).toBe(true, 'email with period should be valid');
+    expect(app.couldBeEmail('johnsmith@')).toBe(true, 'partial email with @ should be valid');
+    expect(app.couldBeEmail('HIT!ME!BABY!1_MORE_TIME@brittneyspears.com')).toBe(true, 'email with special characters should be valid');
+
+  });
+
+  it('should return false for tokens that do not match email pattern', () => {
+    const app = new AppComponent();
+    expect(app.couldBeEmail('')).toBe(false, 'empty string should return false');
+    expect(app.couldBeEmail('johnsmith')).toBe(false, 'does not contain @ should return false');
+  });
 });

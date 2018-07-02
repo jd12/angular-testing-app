@@ -17,4 +17,7 @@ export class AppComponent {
     return this.phoneNumberPattern.test(token);
   }
 
+  public couldBeEmail(token: string) {
+    return token.includes('@');
+  }
 }
