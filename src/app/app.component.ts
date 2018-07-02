@@ -9,6 +9,9 @@ export class AppComponent {
   title = 'app';
   namePattern = new RegExp("^([A-Za-z'-]+)$");
   phoneNumberPattern = new RegExp("([0-9\(\)-]+$)");
+  public phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
+
   public couldBeName(token: string) {
     return this.namePattern.test(token);
   }
