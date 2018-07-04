@@ -69,4 +69,16 @@ describe('AppComponent', () => {
     expect(app.couldBeEmail('')).toBe(false, 'empty string should return false');
     expect(app.couldBeEmail('johnsmith')).toBe(false, 'does not contain @ should return false');
   });
+
+  it('should transform number appropriately', () => {
+    const app = new AppComponent();
+    let numbers = ['123', '456', '7890'];
+    expect(app.transformNumber(numbers)).toBe('(123) 456-7890', 'Should transform number');
+    numbers = ['123', '456'];
+    expect(app.transformNumber(numbers)).toBe('(123) 456', 'Should transform number');
+    numbers = ['123'];
+    expect(app.transformNumber(numbers)).toBe('(123)', 'Should transform number');
+  })
+
+
 });
